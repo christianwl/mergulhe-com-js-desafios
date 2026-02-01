@@ -1,42 +1,43 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <meta name="author" content="christianwl" />
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=Inter:wght@400;700&display=swap"
-        rel="stylesheet">
-
-    <link rel="icon" href="../favicon.ico" type="image/x-icon">
     <title>Desafio JS 1</title>
 
-    <link rel="stylesheet" href="../styles/style.css">
-    <link rel="stylesheet" href="../styles/listaDesafios.css">
-</head>
+    <meta name="author" content="christianwl" />
 
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=Inter:wght@400;700&display=swap"
+    />
+
+    <link rel="stylesheet" href="../src/styles/listaDesafios.css" />
+
+    <link
+      rel="icon"
+      href="../public/favicons/favicon.ico"
+      type="image/x-icon"
+    />
+  </head>
+
+  <body>
     <div class="voltar">
-        <a href="../index.html">⬅Voltar</a>
+      <a href="../index.html">⬅Voltar</a>
     </div>
     <div class="container">
-        <div class="container__conteudo">
-            <div class="container__informacoes">
-                <div class="container__texto" id="container__texto">
-                </div>
-                <img src="../img/trophy.png" alt="ícone de um troféu" />
-                <div id="lista-desafios">
-                </div>
-                <button id="iniciar">Iniciar Script</button>
-            </div>
+      <div class="container__conteudo">
+        <div class="container__informacoes">
+          <div class="container__texto" id="container__texto"></div>
+          <img src="../src/assets/img/trophy.png" alt="ícone de um troféu" />
+          <div id="lista-desafios"></div>
+          <button id="iniciar">Iniciar Script</button>
         </div>
+      </div>
     </div>
-    <script type="module" src="../scripts/leitorDeJson.js" defer></script>
-    <script type="module" src="../scripts/desafio1.js" defer></script>
-</body>
-
+    <script type="module" src="../src/scripts/challenges/desafio1.js"></script>
+  </body>
 </html>

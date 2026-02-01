@@ -11,7 +11,7 @@
  */
 export async function obterDesafiosPorId(id) {
     try {
-      const response = await fetch('../json/desafios.json');
+      const response = await fetch('../../data/content/desafios.json');
       const data = await response.json();
       
       const aula = data.aulas.find(aula => aula.id === id);
