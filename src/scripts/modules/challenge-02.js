@@ -1,9 +1,9 @@
-import { verificarPromptNumerico, verificarSinal } from "../utils/functions.js";
-
 import {
-  obterDesafiosPorId,
-  exibirDesafios,
-} from "../services/leitorDeJson.js";
+  verificarPromptNumerico,
+} from "../utils/prompt-manager.js";
+
+import { verificarSinal } from "../utils/math-utils.js";
+import { obterDesafiosPorId, exibirDesafios } from "../services/json-reader.js";
 
 const idAula = 2; // Altere para o ID da aula que você deseja
 obterDesafiosPorId(idAula).then((desafios) => {

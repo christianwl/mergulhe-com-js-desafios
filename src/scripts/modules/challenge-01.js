@@ -1,7 +1,7 @@
 import {
   obterDesafiosPorId,
   exibirDesafios,
-} from "../services/leitorDeJson.js";
+} from "../services/json-reader.js";
 
 const idAula = 1; // Altere para o ID da aula que você deseja
 obterDesafiosPorId(idAula).then((desafios) => {

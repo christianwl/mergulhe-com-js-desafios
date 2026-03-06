@@ -1,14 +1,11 @@
 import {
-  contador,
   verificarPromptNumerico,
   verificarSeExisteValor,
-  verificarSinal,
-} from "../utils/functions.js";
+} from "../utils/prompt-manager.js";
 
-import {
-  obterDesafiosPorId,
-  exibirDesafios,
-} from "../services/leitorDeJson.js";
+import { contador, verificarSinal } from "../utils/math-utils.js";
+
+import { obterDesafiosPorId, exibirDesafios } from "../services/json-reader.js";
 
 const idAula = 4; // Altere para o ID da aula que você deseja
 obterDesafiosPorId(idAula).then((desafios) => {

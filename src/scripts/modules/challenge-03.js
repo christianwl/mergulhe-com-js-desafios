@@ -1,9 +1,7 @@
-import { verificarSeExisteValor, contador } from "../utils/functions.js";
+import { verificarSeExisteValor } from "../utils/prompt-manager.js";
+import { contador } from "../utils/math-utils.js";
 
-import {
-  obterDesafiosPorId,
-  exibirDesafios,
-} from "../services/leitorDeJson.js";
+import { obterDesafiosPorId, exibirDesafios } from "../services/json-reader.js";
 
 const idAula = 3; // Altere para o ID da aula que você deseja
 obterDesafiosPorId(idAula).then((desafios) => {
