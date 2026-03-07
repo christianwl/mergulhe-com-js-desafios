@@ -27,7 +27,7 @@ document.getElementById("iniciar").addEventListener("click", function () {
     // replace retornar uma nova string removendo o valor especificado no primeiro argumento pelo segundo
     // "/[\u0300-\u036f]/g": engloba todos os diacríticos entre \u0300 e \u036f, e "/g" descrevendo que é para verificar todas as ocorrências na string e não somente a primeira aparição
     // "": o valor que será colocado no lugar, exemplo: "´" vai ser trocado por "", que no caso é 'nada', assim retornando  "Sabado" ao invés de "S´abado"
-    var palavraNormalizada = palavra
+    let palavraNormalizada = palavra
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "");
 

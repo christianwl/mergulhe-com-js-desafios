@@ -1,55 +1,46 @@
+import { obterDesafiosPorId, exibirDesafios } from "../services/json-reader.js";
 import {
-  obterDesafiosPorId,
-  exibirDesafios,
-} from "../services/json-reader.js";
+  collectPositiveValue,
+  collectString,
+} from "../utils/prompt-manager.js";
 
 const idAula = 1; // Altere para o ID da aula que você deseja
 obterDesafiosPorId(idAula).then((desafios) => {
   exibirDesafios(desafios, idAula);
 });
 
-document.getElementById("iniciar").addEventListener("click", function () {
-  // 1
+function showChallenge01() {
   alert("Boas vindas ao nosso site!");
+  let name = "Lua";
+  let age = 25;
 
-  // 2
-  let nome = "Lua";
+  const salesCount = 50;
+  const currentBalance = 1000;
 
-  // 3
-  let idade = 25;
+  const errorMesage = "Erro! Preencha todos os campos";
 
-  // 4
-  let numeroDeVendas = 50;
-
-  // 5
-  let saldoDisponivel = 1000;
-
-  // 6
-  let mensagemDeErro = "Erro! Preencha todos os campos";
-
-  alert(mensagemDeErro);
+  alert(errorMesage);
 
   alert(
-    `Valores padrão armazenados:\n\nNome: ${nome}\nIdade: ${idade}\nNúmero de Vendas: ${numeroDeVendas}\nSaldo Disponível: ${saldoDisponivel}`,
+    `Valores padrão armazenados:\n\nNome: ${name}\nIdade: ${age}\nNúmero de Vendas: ${salesCount}\nSaldo Disponível: ${currentBalance}`,
   );
 
-  // 7
   alert("Agora insira novos valores para o (Nome) e (Idade)");
 
-  function retornarPrompt(tipoValor) {
-    return prompt(`Digite s${tipoValor == "nome" ? "eu" : "ua"} ${tipoValor}`);
-  }
+  let formattedPrompt = (valueName) =>
+    `Digite s${valueName == "nome" ? "eu" : "ua"} ${valueName}:`;
 
-  // 8
-  nome = retornarPrompt("nome");
+  name = collectString(formattedPrompt("nome"));
 
-  // 9
-  idade = retornarPrompt("idade");
+  age = collectPositiveValue(formattedPrompt("idade"));
 
-  alert(`Valores armazenados:\n\nNome: ${nome}\nIdade: ${idade}`);
+  alert(`Valores armazenados:\n\nNome: ${name}\nIdade: ${age}`);
 
-  // 10
-  if (idade >= 18) {
+  if (age >= 18) {
     alert("Pode tirar a habilitação!");
   }
+}
+
+document.getElementById("iniciar").addEventListener("click", function () {
+  showChallenge01();
 });
