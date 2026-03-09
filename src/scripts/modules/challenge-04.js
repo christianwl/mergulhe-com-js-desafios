@@ -3,7 +3,7 @@ import {
   verificarSeExisteValor,
 } from "../utils/prompt-manager.js";
 
-import { contador, verificarSinal } from "../utils/math-utils.js";
+import { contador, checkSign } from "../utils/math-utils.js";
 
 import { obterDesafiosPorId, exibirDesafios } from "../services/json-reader.js";
 
@@ -78,7 +78,7 @@ document.getElementById("iniciar").addEventListener("click", function () {
   let numero = prompt("Digite um valor");
 
   if (verificarPromptNumerico(numero)) {
-    console.log(verificarSinal(numero));
+    console.log(checkSign(numero));
   }
 
   // 9
