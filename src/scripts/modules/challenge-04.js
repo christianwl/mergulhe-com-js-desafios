@@ -1,9 +1,10 @@
 import {
-  verificarPromptNumerico,
-  verificarSeExisteValor,
+  collectNumericValue,
+  collectPositiveValue,
+  collectString,
 } from "../utils/prompt-manager.js";
 
-import { contador, checkSign } from "../utils/math-utils.js";
+import { checkSign, counter } from "../utils/math-utils.js";
 
 import { obterDesafiosPorId, exibirDesafios } from "../services/json-reader.js";
 
@@ -12,97 +13,77 @@ obterDesafiosPorId(idAula).then((desafios) => {
   exibirDesafios(desafios, idAula);
 });
 
-document.getElementById("iniciar").addEventListener("click", function () {
+function showChallenge04() {
   // 1
   console.log("Boas vindas!");
 
   // 2 e 3
-  let nomeDev = "Christian";
-  console.log(`Olá, ${nomeDev}`);
+  const devName = "christianwl";
 
-  alert(`Olá, ${nomeDev}`);
+  console.log(`Olá, ${devName}`);
+  alert(`Olá, ${devName}`);
 
   // 4
-  let linguagemDeProgramacao = prompt(
+  let userProgramLanguage = collectString(
     "Qual a linguagem de programação que você mais gosta?",
   );
 
-  if (verificarSeExisteValor(linguagemDeProgramacao)) {
-    console.log(linguagemDeProgramacao);
-  }
+  console.log(userProgramLanguage);
 
   // 5
-  let valor1 = 1;
-  let valor2 = 2;
+  const n1 = 1;
+  const n2 = 2;
 
-  let resultado;
-
-  function somar(valores) {
-    return valores.reduce((acc, curr) => acc + curr, 0);
-  }
-
-  resultado = somar([valor1, valor2]);
-
-  console.log(`A soma de ${valor1} e ${valor2} é igual a ${resultado}.`);
+  let sum = getSumOrSub(true, [n1, n2]);
+  console.log(`A soma de ${n1} e ${n2} é igual a ${sum}.`);
 
   // 6
-
-  function subtrair(valores) {
-    let subtracao = valores[0];
-    for (let i = 1; i < valores.length; i++) {
-      subtracao -= valores[i];
-    }
-    return subtracao;
-  }
-
-  resultado = subtrair([valor1, valor2]);
-
-  console.log(
-    `A diferença entre ${valor1} e ${valor2} é igual a ${resultado}.`,
-  );
+  let sub = getSumOrSub(false, [n1, n2]);
+  console.log(`A diferença entre ${n1} e ${n2} é igual a ${Math.abs(sub)}.`);
 
   // 7
-  let idade = prompt("Insira a sua idade");
-  let textoMaioridade = "";
-
-  if (verificarPromptNumerico(idade)) {
-    if (idade >= 18) {
-      textoMaioridade = "maior";
-    } else {
-      textoMaioridade = "menor";
-    }
-    console.log(`Você tem ${idade} anos, e é ${textoMaioridade} de idade!`);
-  }
+  let age = collectPositiveValue("Insira a sua idade: ");
+  console.log(getAgeMajorityText(age));
 
   // 8
-  let numero = prompt("Digite um valor");
-
-  if (verificarPromptNumerico(numero)) {
-    console.log(checkSign(numero));
-  }
+  let num = collectNumericValue("Digite um valor: ");
+  console.log(checkSign(num));
 
   // 9
-  console.log(contador(1, 10));
+  console.log(counter({initial: 1, max: 10}));
 
   // 10
-  let nota = 8;
-
-  if (nota >= 7) {
-    console.log("Aprovado");
-  } else {
-    console.log("Reprovado");
-  }
+  const grade = 8;
+  console.log(getIsApprovedText(grade, 7));
 
   // 11
-  function gerarNumeroAleatorio(numeroMaximo) {
-    return parseInt(Math.random() * numeroMaximo + 1);
-  }
+  let randomIntNum = (num) => parseInt(Math.random() * num + 1)
 
-  console.log(gerarNumeroAleatorio(5));
+  console.log(randomIntNum(5));
 
   // 12
-  console.log(gerarNumeroAleatorio(10));
+  console.log(randomIntNum(10));
 
   // 13
-  console.log(gerarNumeroAleatorio(1000));
+  console.log(randomIntNum(1000));
+}
+
+function getSumOrSub(isAdd = true, numArray = []) {
+  if (numArray.length === 0) return 0;
+  let typeCalc = isAdd ? +1 : -1;
+  return numArray.reduce((acc, curr) => acc + curr * typeCalc);
+}
+
+function getAgeMajorityText(age, ageMajority = 18){
+  let majorityText = age >= ageMajority ? "maior" : "menor";
+
+  return `Você tem ${age} anos, e é ${majorityText} de idade!`;
+}
+
+function getIsApprovedText(grade, gradeMin = 6){
+  return grade >= gradeMin ? "Aprovado" : "Reprovado";
+}
+
+document.getElementById("iniciar").addEventListener("click", () => {
+  showChallenge04();
 });

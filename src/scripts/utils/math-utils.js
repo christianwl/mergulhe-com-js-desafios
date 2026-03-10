@@ -6,9 +6,9 @@
  */
 export function checkSign(num) {
   const numSigns = {
-    0: "apenas Zero",
+    "0": "apenas Zero",
     "-0": "apenas Zero",
-    1: "Positivo",
+    "1": "Positivo",
     "-1": "Negativo",
   };
 
