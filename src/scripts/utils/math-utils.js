@@ -19,42 +19,39 @@ export function checkSign(num) {
 }
 
 /**
- * Conta de um número inicial ao número final e retorna uma string com a contagem total.
+ * Counts from a starting number to an ending number and returns a string
+ * containing the full sequence of the count.
  *
  * ---
- * Nota: Os valores inicial e max não podem ser os mesmos.
+ * Note: The `initial` and `max` values cannot be the same.
+ * If they are equal, a warning message will be returned.
  *
- * Se forem iguais, um alerta será exibido.
- * @param {number} inicial - O número que a contagem irá iniciar.
- * @param {number} max - O número máximo que a contagem deve ir.
- * @returns {string} O texto da contagem total.
+ * @param {Object} valuesObj - Object containing the counter values.
+ * @param {number} valuesObj.initial - The number where the count starts.
+ * @param {number} valuesObj.max - The number where the count ends.
+ *
+ * @returns {string} A string containing the full count sequence or an error message.
  */
 
-export function contador(inicial, max) {
-  if (inicial === undefined || max === undefined) {
-    alert("O valor inicial ou maxímo não foi adicionado ao contador");
-    return;
-  } else if (inicial === max) {
-    alert(
-      "Foram adicionado valores iguais em inicial e maxímo, não é possível iniciar o contador!",
-    );
-    return;
-  } else if (!verificarValorNumerico([inicial, max])) {
-    alert("Não foram adicionados valores válidos ao Contador");
-    return;
+export function counter(valuesObj = {}) {
+  const { initial, max } = valuesObj;
+  if (initial == null || max == null) {
+    return "O valor inicial ou maxímo não foi adicionado ao contador";
   }
 
-  let i = inicial;
-  let resultado = "";
-
-  const menorQueMax = inicial < max;
-
-  while (menorQueMax ? i <= max : i >= max) {
-    resultado += `${i}${max === i ? "" : ", "}`;
-
-    i += menorQueMax ? 1 : -1;
+  if (initial === max) {
+    return "Foram adicionado valores iguais em inicial e maxímo, não é possível iniciar o contador!";
   }
 
-  resultado += ".";
-  return resultado;
+  let numList = [];
+  let index = initial;
+
+  const step = initial < max ? 1 : -1;
+
+  while (step === 1 ? index <= max : index >= max) {
+    numList.push(index);
+    index += step;
+  }
+
+  return `${numList.join(", ")}.`;
 }

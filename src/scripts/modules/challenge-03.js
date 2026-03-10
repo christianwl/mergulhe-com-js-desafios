@@ -1,35 +1,54 @@
-import { verificarSeExisteValor } from "../utils/prompt-manager.js";
-import { contador } from "../utils/math-utils.js";
+// import { verificarSeExisteValor } from "../utils/prompt-manager.js";
+import { counter } from "../utils/math-utils.js";
 
 import { obterDesafiosPorId, exibirDesafios } from "../services/json-reader.js";
+import {
+  collectNumericValue,
+  collectSpecificNumber,
+} from "../utils/prompt-manager.js";
 
-const idAula = 3; // Altere para o ID da aula que você deseja
+function showChallenge03() {
+  // 1 e 2
+  alert(counter({ initial: 1, max: 10 }));
+  alert(counter({ initial: 10, max: 0 }));
+
+  // 3 e 4
+  alert(getUserCounter({ isProgressive: true }));
+  alert(getUserCounter({ isProgressive: false }));
+}
+
+function getUserCounter({ isProgresive: isProgressive = false } = {}) {
+  const typeCounterList = {
+    1: "Progressiva",
+    2: "Regresiva",
+  };
+
+  let userChoice;
+
+  if (isProgressive === undefined) {
+    userChoice = collectSpecificNumber(
+      `Digite qual contagem você deseja fazer:\n\n[ 1 ] ${typeCounterList[1]}\n\n[ 2 ] ${typeCounterList[2]}`,
+      [1, 2],
+    );
+  } else {
+    userChoice = isProgressive ? 1 : 2;
+  }
+
+  const userNum = collectNumericValue(
+    `Digite o valor para a contagem ${typeCounterList[userChoice]}`,
+  );
+
+  let obj = { initial: 0, max: 0 };
+  userChoice === 1 ? (obj.max = userNum) : (obj.initial = userNum);
+
+  return counter(obj);
+}
+
+const idAula = 3;
 obterDesafiosPorId(idAula).then((desafios) => {
   exibirDesafios(desafios, idAula);
 });
 
 document.getElementById("iniciar").addEventListener("click", function () {
-  // 1 e 2
-
-  alert(contador(1, 10));
-  alert(contador(10, 0));
-
-  // 3 e 4
-
-  function definirContagem(sentidoDaContagem) {
-    let texto = sentidoDaContagem > 0 ? "progressiva" : "regressiva";
-
-    let contagem = prompt(`Digite um valor para a contagem ${texto}`);
-
-    if (verificarSeExisteValor(contagem)) {
-      if (sentidoDaContagem > 0) {
-        alert(contador(0, Number(contagem)));
-      } else {
-        alert(contador(Number(contagem), 0));
-      }
-    }
-  }
-
-  definirContagem(-1);
-  definirContagem(1);
+  showChallenge03();
 });
